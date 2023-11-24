@@ -1,5 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { TUser } from './user.interface';
+import bcrypt from "bcrypt";
+import config from '../../config';
+
 
 export const userSchema = new Schema<TUser>({
     userId: { type: Number, required: true },
@@ -20,6 +23,15 @@ export const userSchema = new Schema<TUser>({
     },
 });
 
+
+userSchema.pre('save', async function (next) {
+    const user = this;
+    user.password = await bcrypt.hash(
+      user.password,
+      Number(config.bcrypt_solt_rounds),
+    );
+    next();
+  });
 
 // 3. Create a Model.
 export const User = model<TUser>('User', userSchema);
