@@ -9,7 +9,7 @@ const createUserIntoDB = async (userData: TUser) => {
 
 const getUserFromDB = async ()=>{
   const result = await User.aggregate([
-    {$project: {username:1, fullName:1, age:1, email:1, address:1,_id:0}}
+    {$project: {username:1, fullName:1, age:1, email:1, address:1}}
   ])
   return result;
 }

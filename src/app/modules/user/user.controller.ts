@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import { userService } from './user.service';
 import { userSchema } from './user.model';
 import { TUser } from './user.interface';
+import UserSchemaZodValidation from './user.zod.validation';
 const createUser = async (req: Request, res: Response) => {
     try {
       const userData = req.body;
-      const result = await userService.createUserIntoDB(userData);
+      const zodParseData = UserSchemaZodValidation.parse(userData);
+      const result = await userService.createUserIntoDB(zodParseData);
       const withoutPassword =delete(userData.password )
       //send response here
       res.status(200).json({
@@ -18,7 +20,7 @@ const createUser = async (req: Request, res: Response) => {
     } catch (err: any) {
       res.status(500).json({
         success: false,
-        message: err.message || "user can't created successfully",
+        message:"user can't created successfully",
         error: err,
       });
     }
@@ -37,7 +39,7 @@ const getAllUser =async(req: Request, res: Response)=>{
    catch (err: any) {
     res.status(500).json({
       success: false,
-      message: err.message || "user fetched unsuccessfull",
+      message: "user fetched unsuccessfull",
       error: err,
     });
   }
@@ -59,7 +61,7 @@ const getSingleUser =async (req: Request, res: Response)=>{
       } catch (err: any) {
         res.status(500).json({
           success: false,
-          message: err.message || "User not found",
+          message:"User not found",
           error: {
             code: 404,
             description: "User not found!"
@@ -87,7 +89,7 @@ const updateSingleUser = async (req: Request, res: Response) => {
    
      res.status(404).json({
         success: false,
-        message: err.message || 'User not found',
+        message:'User not found',
         error: {
           code: 404,
           description: 'User not found!',
@@ -110,7 +112,7 @@ const deleteSingleUser = async (req: Request, res: Response) => {
   catch (err: any) {
      res.status(404).json({
         success: false,
-        message:err.message ||  'User not found',
+        message:'User not found',
         error: {
           code: 404,
           description: 'User not found!',
