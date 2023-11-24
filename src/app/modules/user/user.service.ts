@@ -9,7 +9,7 @@ const createUserIntoDB = async (userData: TUser) => {
 
 const getUserFromDB = async ()=>{
   const result = await User.aggregate([
-    {$project: {username:1, fullName:1, age:1, email:1, address:1}}
+    {$project: {username:1, fullName:1, age:1, email:1, address:1,_id:0}}
   ])
   return result;
 }
@@ -47,11 +47,59 @@ const deleteSingleUserFromDB = async (userId: number) => {
   return user;
 };
 
+
+
+const addProductToOrderFromDB = async (userId: number, productData: any) => {
+  const user = await User.findOne({ userId });
+
+  if (!user) {
+    const error = new Error('User not found') as any;
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (!user.orders) {
+    user.orders = [];
+  }
+
+  user.orders.push(productData);
+  await user.save();
+  return user.orders;
+};
+
+
+
+
+
+const getUserOrdersFromDB = async (userId: number) => {
+  const user = await User.findOne({ userId:userId });
+
+  if (!user) {
+    const error = new Error('User not found') as any;
+    error.statusCode = 404;
+    throw error;
+  }
+  return user ? user.orders : null;
+};
+
+
+
+
+
+
+
+
+
+
+
+
   export const userService = {
     createUserIntoDB,
     getUserFromDB,
     getSingleUserFromDB,
     updateSingleUserIntoDB,
-    deleteSingleUserFromDB
+    deleteSingleUserFromDB,
+    addProductToOrderFromDB,
+    getUserOrdersFromDB
   
   };

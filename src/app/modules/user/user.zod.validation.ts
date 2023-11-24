@@ -2,6 +2,11 @@ import { z } from 'zod';
 
 
 
+const OrderSchemaValidation = z.object({
+  productName: z.string({ required_error: 'Product name is required' }),
+  price: z.number({ required_error: 'Price is required' }),
+  quantity: z.number({ required_error: 'Quantity is required' }),
+});
   
   // Zod validation schema for the User
   const UserSchemaZodValidation = z.object({
@@ -21,6 +26,7 @@ import { z } from 'zod';
       city: z.string({ required_error: 'City is required' }),
       country: z.string({ required_error: 'Country is required' }),
     }),
+    orders: z.array(OrderSchemaValidation).default([]),
     
   });
 
