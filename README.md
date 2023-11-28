@@ -55,8 +55,8 @@ Make sure you have the following installed on your machine:
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/marufbroh/level2-assignment-2.git
+   ```
+   git clone https://github.com/oliullah05/Mongoose-Express-Typescript-CRUD.git
    ```
 
 2. **Install Dependencies:**
