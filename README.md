@@ -10,7 +10,48 @@ Make sure you have the following installed on your machine:
 - npm (Node Package Manager)
 - MongoDB
 
-## Getting Started
+## Live Site
+
+[Live Site](https://level2a2.vercel.app/)
+
+## API Endpoints
+
+### Create a new user
+- Endpoint: POST  `https://level2a2.vercel.app/api/users`
+
+### Retrieve a list of all users
+- Endpoint:GET  `https://level2a2.vercel.app/api/users`
+
+### Retrieve a specific user by ID
+- Endpoint:GET  `https://level2a2.vercel.app/api/users/:userId`
+
+### Update user information
+- Endpoint: PUT  `https://level2a2.vercel.app/api/users/:userId`
+
+### Delete a user
+- Endpoint: `DELETE https://level2a2.vercel.app/api/users/:userId`
+
+### Add New Product in Order
+- Endpoint: `PUT https://level2a2.vercel.app/api/users/:userId/orders`
+
+### Retrieve all orders for a specific user
+- Endpoint: `GET https://level2a2.vercel.app/api/users/:userId/orders`
+
+### Calculate Total Price of Orders for a Specific User
+- Endpoint: `GET https://level2a2.vercel.app/api/users/:userId/orders/total-price`
+
+
+
+
+
+
+
+
+
+
+
+
+## Run Locally 
 
 1. **Clone the repository:**
 
