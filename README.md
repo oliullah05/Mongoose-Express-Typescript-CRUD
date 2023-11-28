@@ -24,6 +24,7 @@ Make sure you have the following installed on your machine:
 
 ### Retrieve a specific user by ID
 - Endpoint:GET  `https://level2a2.vercel.app/api/users/:userId`
+- Sample  `https://level2a2.vercel.app/api/users/6560959a59445230cb868eeb`
 
 ### Update user information
 - Endpoint: PUT  `https://level2a2.vercel.app/api/users/:userId`
@@ -36,9 +37,11 @@ Make sure you have the following installed on your machine:
 
 ### Retrieve all orders for a specific user
 - Endpoint:GET  `https://level2a2.vercel.app/api/users/:userId/orders`
+- Sample  `https://level2a2.vercel.app/api/users/6560959a59445230cb868eeb/orders`
 
 ### Calculate Total Price of Orders for a Specific User
 - Endpoint:GET  `https://level2a2.vercel.app/api/users/:userId/orders/total-price`
+- Sample  `https://level2a2.vercel.app/api/users/:6560959a59445230cb868eeb/orders/total-price`
 
 
 
